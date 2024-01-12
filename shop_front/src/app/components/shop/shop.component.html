@@ -1,0 +1,56 @@
+<div style="height: 80vh; width: 70vw">
+    <div mat-dialog-title >
+        <!-- <div class="row"> -->
+            <h2 style="display: inline-block;" >Agregar productos</h2>
+            <h2 style="display: inline-block; float: right; margin-top: 20px;" >
+                <button mat-raised-button color="primary" mat-dialog-close >Cerrar</button>
+            </h2>
+        <!-- </div> -->
+        
+    </div>
+    
+    <div mat-dialog-content class="mat-typography">
+        <h2>
+            Seleccione una marca
+        </h2>
+        <mat-grid-list cols="{{cols}}" rowHeight="50px">
+            @for (shop of shopList; track shop) {
+            <mat-grid-tile (click)="showShopProducts(shop)" style="cursor: pointer;">{{shop.name}}</mat-grid-tile>
+            }
+        </mat-grid-list>
+        <h2>
+            Productos
+        </h2>
+        <div *ngIf="shopProductList.length > 0">
+            <table mat-table [dataSource]="shopProductList" class="mat-elevation-z8">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cost">
+                    <th mat-header-cell *matHeaderCellDef> Precio </th>
+                    <td mat-cell *matCellDef="let product">${{product.cost | number : '1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let product">
+                        <mat-form-field>
+                            <mat-label>Cantidad</mat-label>
+                            <input type="number" [(ngModel)]="product.quantity" matInput>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" title="Agregar" style="margin-left: 5px;"
+                            (click)="addProduct(product)">
+                            Agregar
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        
+    </div>
+
+</div>

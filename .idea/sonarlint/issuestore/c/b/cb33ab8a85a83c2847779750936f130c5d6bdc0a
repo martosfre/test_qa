@@ -1,0 +1,16 @@
+
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+n
+java:S1128"SRemove this unused import 'com.java.eshop.eshop.config.JasperRerportsSimpleConfig'.(úıœÿÿÿÿÿ
+d
+java:S1128"NRemove this unused import 'com.java.eshop.eshop.reports.SimpleReportExporter'.(îú˜•
+g
+java:S1128"LRemove this unused import 'com.java.eshop.eshop.reports.SimpleReportFiller'.(¤Ü¾ıÿÿÿÿ
+{
+java:S1128
+"fRemove this unused import 'org.springframework.context.annotation.AnnotationConfigApplicationContext'.(€¡¹;
+I
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ
+E
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ

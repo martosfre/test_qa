@@ -1,0 +1,26 @@
+<div class="login_container">
+    <mat-card class="login_card">
+        <mat-card-content>
+            <h1>Login</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="doLogin()" class="form-group">
+                <mat-form-field>
+                    <mat-label for="userName">Nombre de usuario:</mat-label>
+                    <input matInput id="userName" type="text" class="form-control" formControlName="userName">
+                    <div *ngIf="validateFormField('userName')" class="text-danger">
+                        <small>Nombre de usuario es requerido</small>
+                    </div>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label for="password">Contraseña:</mat-label>
+                    <input matInput  id="password" type="password" class="form-control" formControlName="password">
+                    <div *ngIf="validateFormField('password')" class="text-danger">
+                        <small>Contraseña es requerido</small>
+                    </div>
+                </mat-form-field>
+                <br>
+                <button mat-raised-button color="primary" type="submit" class="btn btn-dark">Ingresar</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

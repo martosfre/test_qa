@@ -1,0 +1,22 @@
+/* .header-container{
+    width: 100%;
+    background-color: rgb(127, 127, 249);
+    height: 50px;
+} */
+
+.content-container {
+    height: calc(100vh - var(--mat-toolbar-standard-height));
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.footer{
+    height: var(--mat-toolbar-standard-height);
+    width: 100%;
+    background-color: white;
+    box-shadow: 10px 5px 5px black;
+}

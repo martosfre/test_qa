@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+    <span>Eshop</span>
+    <span class="example-spacer"></span>
+    <button mat-button>
+        <div [matBadgeHidden]="cartService.isEmpty()" matBadge="{{cartService.cartSize()}}" matBadgeOverlap="true" 
+                matBadgeColor="accent" matBadgeSize="small">
+            <mat-icon style="vertical-align: middle;" title="Ver carrito">shopping_cart</mat-icon>
+        </div>
+    </button>
+    <button mat-button
+        (click)="getReport()" 
+        class="example-icon" title="Descargar reporte">
+        <!-- <mat-icon>login</mat-icon>  -->
+        Descargar reporte
+    </button>
+    <button *ngIf="!this.loginService.isAuthenticated()" mat-raised-button color="accent" (click)="goToLogin()" 
+        class="example-icon" title="Ingresar">
+        <!-- <mat-icon>login</mat-icon>  -->
+        Ingresar
+    </button>
+    <button *ngIf="this.loginService.isAuthenticated()" mat-raised-button color="accent" (click)="logout()"
+        class="example-icon" title="Salir">
+        <!-- <mat-icon>logout</mat-icon>  -->
+        Salir
+    </button>
+</mat-toolbar>
+<div class="content-container">
+    <router-outlet></router-outlet>
+</div>

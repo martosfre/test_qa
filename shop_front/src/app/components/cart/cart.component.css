@@ -1,0 +1,9 @@
+.red-snackbar {
+    background: rgb(255, 99, 99);
+}
+
+::ng-deep .mat-mdc-snack-bar-container {&.snack_err {
+    --mdc-snackbar-container-color: #21f364;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+}}

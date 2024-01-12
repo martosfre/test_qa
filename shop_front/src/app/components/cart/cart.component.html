@@ -1,0 +1,141 @@
+<div>
+    <div class="row" style="margin-bottom: 3px;">
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-6">
+                        <h1>Cliente</h1>
+                        <form [formGroup]="clientForm" class="form-group row">
+                            <mat-form-field class="col-6">
+                                <mat-label for="documentNumber">Cédula:</mat-label>
+                                <input matInput id="documentNumber" type="text" class="form-control" 
+                                    formControlName="documentNumber"  (blur)="changeDocNumber()">
+                                <div *ngIf="validateClientFormField('documentNumber')" class="text-danger">
+                                    <small>Cédula es requerido</small>
+                                </div>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="col-6">
+                                <mat-label for="name">Nombre:</mat-label>
+                                <input matInput id="name" type="text" class="form-control" formControlName="name">
+                                <div *ngIf="validateClientFormField('name')" class="text-danger">
+                                    <small>Cédula es requerido</small>
+                                </div>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="col-12">
+                                <mat-label for="email">Email:</mat-label>
+                                <input matInput id="email" type="text" class="form-control" formControlName="email">
+                            </mat-form-field>
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <h1>Proveedor</h1>
+                        <form [formGroup]="providerForm" class="form-group row">
+                            <mat-form-field class="col-12">
+                                <mat-label for="documentNumber">RUC:</mat-label>
+                                <input matInput id="documentNumber" type="text" class="form-control" 
+                                (blur)="changeRuc()" formControlName="documentNumber">
+                                <div *ngIf="validateClientFormField('documentNumber')" class="text-danger">
+                                    <small>RUC es requerido</small>
+                                </div>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="col-12">
+                                <mat-label for="name">Nombre:</mat-label>
+                                <input matInput id="name" type="text" class="form-control" formControlName="name">
+                                <div *ngIf="validateClientFormField('name')" class="text-danger">
+                                    <small>Cédula es requerido</small>
+                                </div>
+                            </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <strong class="col-6">Cédula: </strong>
+                        <span class="col-6">{{client?.documentNumber}}</span>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <strong class="col-6">Nombre: </strong>
+                        <span class="col-6">{{client?.name}}</span><br>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <strong class="col-6">Email: </strong>
+                        <span class="col-6">{{client?.email}}</span>
+                    </div>
+                </div> -->
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-card>
+        <mat-card-content>
+            <h1>Productos </h1>
+            
+            <button mat-raised-button color="primary" (click)="openSelectProducts()">
+                Agregar productos
+            </button>
+            <div *ngIf="allProductsList.length > 0">
+                <table mat-table [dataSource]="allProductsList">
+                    <ng-container matColumnDef="shop">
+                        <th mat-header-cell *matHeaderCellDef> Tienda </th>
+                        <td mat-cell *matCellDef="let product"> {{product.shop}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                        <td mat-cell *matCellDef="let product"> {{product.quantity}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="unitCost">
+                        <th mat-header-cell *matHeaderCellDef> Costo unitario </th>
+                        <td mat-cell *matCellDef="let product"> ${{product.unitCost | number : '1.2-2'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="totalCost">
+                        <th mat-header-cell *matHeaderCellDef> Costo total </th>
+                        <td mat-cell *matCellDef="let product"> ${{product.totalCost | number : '1.2-2'}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let product">
+                            <button mat-raised-button color="danger" title="Eliminar" [disabled]="true">
+                                Eliminar
+                            </button>
+                        </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-6"></div>
+                    <div class="col-6">
+                        <div class="row">
+                            <strong class="col-6">Subtotal:</strong>
+                            <span class="col-6">${{subtotal | number : '1.2-2'}}</span>
+                            <strong class="col-6">Iva:</strong>
+                            <span class="col-6">${{iva | number : '1.2-2'}}</span>
+                            <strong class="col-6">Total:</strong>
+                            <span class="col-6">${{total | number : '1.2-2'}}</span>
+                            <div class="col-6" style="margin-top: 30px;">
+                                <button mat-raised-button color="primary" title="Generar order"
+                                (click)="generateOrder()" style="width: 100%;">
+                                    Generar orden
+                                </button>
+                            </div>
+                        </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+    <br>
+
+</div>
